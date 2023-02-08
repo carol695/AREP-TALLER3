@@ -34,7 +34,6 @@ public class cache {
     /**
      * Metodo que obtiene la instancia
      *
-     * @param key Key a buscar
      * @return Valor asociado a la key
      */
 

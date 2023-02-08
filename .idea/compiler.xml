@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Taller1_AREP" />
         <module name="Taller1-AREP" />
+        <module name="Taller2_AREP" />
       </profile>
     </annotationProcessing>
   </component>
