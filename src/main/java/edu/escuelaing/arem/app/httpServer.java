@@ -212,10 +212,15 @@ public class httpServer {
     }
 
 
-    private static String executeService(String serviceName) throws IOException {
-        RESTService rs = services.get(serviceName);
-        String header = rs.getHeader();
-        String body = rs.getResponse();
+    private static String executeService(String serviceName) {
+       tring header = "", body = "";
+        try {
+            RESTService rs = services.get(serviceName);
+            header = rs.getHeader();
+            body = rs.getResponse();
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
         return header + body;
     }
 
