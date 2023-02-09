@@ -52,9 +52,11 @@ Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de pr
 
 ![image](https://user-images.githubusercontent.com/63822072/217949026-6cc28799-52b1-465f-adde-860daa588a1b.png)
 
-### Para CSS
+#### Para CSS
 
 ![image](https://user-images.githubusercontent.com/63822072/217949523-86873440-23ea-4da8-906e-5b33c32ff64d.png)
+
+### Nota: De igual manera, la estructura anteriormente visualizada se utiliza para los dos servicios faltantes. Tanto para documentos javaScript e imagen. 
 
 ### :bulb: Construido con
 
