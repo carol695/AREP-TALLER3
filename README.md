@@ -59,6 +59,7 @@ Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de pr
 
 ### Nota: De igual manera, la estructura anteriormente visualizada se utiliza para los dos servicios faltantes. Tanto para documentos javaScript e imagen. 
 
+****
 ### :bulb: Construido con
 
 * [Maven](https://maven.apache.org/) - Dependency Management
