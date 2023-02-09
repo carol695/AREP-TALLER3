@@ -14,7 +14,7 @@ Para mirar los diferentes servicios, se coloca el path localhost:35000/apps/"Nom
 **1. Para empezar se clona el repositorio colocando el siguiente comando**
 
 ```
-git clone https://github.com/carol695/Taller1_AREP.git
+git clone https://github.com/carol695/Taller2_AREP.git
 ```
 **2. Ya clonado el repositorio abrimos el laboratorio utilizando cualquier de los siguientes IDE.**
 
@@ -29,7 +29,14 @@ git clean package exec:java -D"exec.mainClass"="edu.escuelaing.arem.app.httpServ
 ```
 
 
-Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de preferencia y entramos al link http://localhost:35000 alli podremos ingresar el nombre de una película
+Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de preferencia y entramos al link http://localhost:35000/apps/"Nombre del servicio"
+
+### Para el nombre del servicio podemos reemplazarlo con: 
+
+* index: Archivo en html.
+* estilos: Archivo en css.
+* imagen: Imagen en formato jpg.
+* javaScript: Formato en js. 
 
 ****
 ### :chart_with_downwards_trend: Prerrequisitos
@@ -41,10 +48,13 @@ Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de pr
 
 ### :construction: Arquitectura propuesta
 
-![image](https://user-images.githubusercontent.com/63822072/216467924-5fa01c56-45fd-44c5-92c2-db300a2bda2c.png)
+#### Para html 
 
-![image](https://user-images.githubusercontent.com/63822072/216468791-ad18b9b2-342d-44d0-9f4c-dd992f91c172.png)
+![image](https://user-images.githubusercontent.com/63822072/217949026-6cc28799-52b1-465f-adde-860daa588a1b.png)
 
+### Para CSS
+
+![image](https://user-images.githubusercontent.com/63822072/217949523-86873440-23ea-4da8-906e-5b33c32ff64d.png)
 
 ### :bulb: Construido con
 
@@ -60,6 +70,5 @@ Para definir el versionamiento se pudo obserar los tags del repositorio, y el ve
 
 ## :page_with_curl: Descripción
 
-- `Extensibilidad`:  Existe extensibilidad debido a que se puede cambiar la pagina a la que se quiere traer la información.
-- `Patrones`: Se utiliza el patron estructural de fachada, debido a que proporciona una interfaz simplificada, un framework o cualquier otro grupo complejo de clases. 
-- `Moduralidad`: En esta aplicación se cuenta con moduralidad, ya que se subdivide esta aplicación en partes más pequeñas, realizando cada una un trabajo un poco independiente de la aplicación. 
+Se construye una interfaz(RESTService) la cual tiene los metodos para devolver el header y el body de una pagina, se crearon varias clases que implementan esta interfaz para que leyeran archivos html, css, js y jgp, para esto se usa un httpServer el cual es el encargado de conectar y revisar que el link ingresa para redireccionar de la mejor manera y así mostrar el cuerpo de cada servicio. 
+Además se genera una carpeta en el main, llamada resource, donde esta tendra los archivos .html, .css, .js y jpg. 
