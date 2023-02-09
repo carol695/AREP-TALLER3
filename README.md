@@ -6,7 +6,7 @@ ejecutan en entornos separados, normalmente en diferentes plataformas conectadas
 El objetivo de este laboratorio es escribir un servidor web que soporte múlltiples solicitudes seguidas (no concurrentes). Para ello el servidor debe leer los archivos del disco local y retornar todos los archivos solicitados, incluyendo páginas html, archivos java script, css e imágenes.
 Para mirar los diferentes servicios, se coloca el path localhost:35000/apps/"Nombre del servicio" .
  
- 
+**** 
 ## Empezando
 
 ### 🛠️ Abre y ejecuta el proyecto
@@ -28,7 +28,7 @@ git clone https://github.com/carol695/Taller2_AREP.git
 git clean package exec:java -D"exec.mainClass"="edu.escuelaing.arem.app.WebApss.FirstApp"
 ```
 
-Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de preferencia y entramos al link http://localhost:35000/apps/"Nombre del servicio"
+Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de preferencia y entramos al link http://localhost:35000/apps/ "Nombre del servicio"
 
 ### Para el nombre del servicio podemos reemplazarlo con: 
 
@@ -44,6 +44,8 @@ Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de pr
 -   [Maven](https://maven.apache.org/download.cgi) - Gestor de dependencias
 -   [Java 8](https://www.java.com/download/ie_manual.jsp) - Entorno de desarrollo
 -   [Intellij Idea](https://www.jetbrains.com/es-es/idea/download/) (Opcional)
+
+****
 
 ### :construction: Arquitectura propuesta
 
