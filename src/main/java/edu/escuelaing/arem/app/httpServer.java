@@ -1,12 +1,11 @@
 package edu.escuelaing.arem.app;
 
+import edu.escuelaing.arem.app.services.RESTService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -19,10 +18,15 @@ public class httpServer {
     private static httpServer instance = new httpServer();
 
     private static Map<String, RESTService> services = new HashMap<>();
-    private httpServer(){}
+
+    OutputStream outputStream = null;
 
     public static httpServer getInstance(){
         return instance;
+    }
+
+    public OutputStream getOutputStream() {
+        return outputStream;
     }
 
 
@@ -60,30 +64,33 @@ public class httpServer {
             }
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String inputLine, outputLine;
+            String inputLine, outputLine, path = "/simple";
+            Boolean FirstLine = true;
             String title = "";
+            outputStream = clientSocket.getOutputStream();
+
             while ((inputLine = in.readLine()) != null) {
-                //String name[] = inputLine.split("title=");
                 System.out.println("Received: " + inputLine);
+
+
                 if (inputLine.contains("/hello?name=")) {
                     String[] res = inputLine.split("=");
                     title = res[1].split("HTTP")[0].replace(" ", "");
                 }
-                System.out.println("Received: " + inputLine);
+
+                if(FirstLine){
+                    path = inputLine.split(" ")[1];
+                    FirstLine = false;
+                }
                 if (!in.ready()) {
                     break;
                 }
             }
 
-            if (inputLine.startsWith("/apps/")){
-                outputLine = executeService(inputLine.substring(5));
+            if (path.startsWith("/apps/")){
+                outputLine = executeService(path.substring(5));
             }
-            else {
-                outputLine = htmlSimple();
-            }
-
-
-            if (!title.equals("")) {
+            else if (!title.equals("")) {
                cache instan =cache.getInstance();
                 if(instan.contains(title)){
                     System.out.println("Esta en el cache");
@@ -118,6 +125,9 @@ public class httpServer {
         }
         serverSocket.close();
     }
+
+
+
 
     /**
      * Metodo para crear una tabla en formato String JSON
@@ -202,12 +212,14 @@ public class httpServer {
     }
 
 
-    private static String executeService(String serviceName){
+    private static String executeService(String serviceName) throws IOException {
         RESTService rs = services.get(serviceName);
         String header = rs.getHeader();
         String body = rs.getResponse();
         return header + body;
     }
+
+
 
     public void addServices(String key, RESTService service){
         services.put(key,service);
