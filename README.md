@@ -1,12 +1,10 @@
-# APLICACIONES DISTRIBUIDAS (HTTP, SOCKETS, HTML, JS,MAVEN, GIT)
+# DISEÑO Y ESTRUCTURACIÓN DE DE APLICACIONES DISTRIBUIDAS EN INTERNET
 
 Una aplicación distribuida es una aplicación con distintos componentes que se 
 ejecutan en entornos separados, normalmente en diferentes plataformas conectadas a través de una red
  
-El objetivo de este laboratorio es crear una aplicación para consultar la información de películas de cine. 
-Esta aplicación recibe una frase de búsqueda del titulo de cualquier pelicula y está mostrará una tabla con
-información acerca de esta misma. Esta información es sacada del API gratuito https://www.omdbapi.com/. 
-De igual manera, se implementa un Caché que permita evitar hacer consultas repetidas al API externo. 
+El objetivo de este laboratorio es escribir un servidor web que soporte múlltiples solicitudes seguidas (no concurrentes). Para ello el servidor debe leer los archivos del disco local y retornar todos los archivos solicitados, incluyendo páginas html, archivos java script, css e imágenes.
+Para mirar los diferentes servicios, se coloca el path localhost:35000/apps/"Nombre del servicio" 
  
  
 ## Empezando
