@@ -4,7 +4,7 @@ Una aplicación distribuida es una aplicación con distintos componentes que se
 ejecutan en entornos separados, normalmente en diferentes plataformas conectadas a través de una red
  
 El objetivo de este laboratorio es escribir un servidor web que soporte múlltiples solicitudes seguidas (no concurrentes). Para ello el servidor debe leer los archivos del disco local y retornar todos los archivos solicitados, incluyendo páginas html, archivos java script, css e imágenes.
-Para mirar los diferentes servicios, se coloca el path localhost:35000/apps/"Nombre del servicio" 
+Para mirar los diferentes servicios, se coloca el path localhost:35000/apps/"Nombre del servicio" .
  
  
 ## Empezando
@@ -25,9 +25,8 @@ git clone https://github.com/carol695/Taller2_AREP.git
 **3. Luego de abrir el laboratorio, corremos el proyecto. Para este caso colocaremos lo siguiente: **
 
 ```
-git clean package exec:java -D"exec.mainClass"="edu.escuelaing.arem.app.httpServer"
+git clean package exec:java -D"exec.mainClass"="edu.escuelaing.arem.app.WebApss.FirstApp"
 ```
-
 
 Una vez veamos el mensaje de "Listo para recibir ..." entramos al buscador de preferencia y entramos al link http://localhost:35000/apps/"Nombre del servicio"
 
