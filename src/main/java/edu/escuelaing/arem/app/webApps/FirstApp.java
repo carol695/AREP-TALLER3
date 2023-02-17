@@ -6,6 +6,11 @@ import edu.escuelaing.arem.app.httpServer;
 import java.io.IOException;
 
 public class FirstApp {
+    /**
+     * Método principal donde se genera cualquier servicio
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         httpServer server = httpServer.getInstance();
         server.addServices("/index", new ServiceHtml());

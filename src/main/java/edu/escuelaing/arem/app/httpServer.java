@@ -1,6 +1,7 @@
 package edu.escuelaing.arem.app;
 
 import edu.escuelaing.arem.app.services.RESTService;
+import edu.escuelaing.arem.app.spark.Spark;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +11,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
 
 public class httpServer {
     private static final String url = "http://www.omdbapi.com/?t=";
@@ -43,6 +46,7 @@ public class httpServer {
       */
     public void run(String[] args) throws IOException, JSONException {
         ServerSocket serverSocket = null;
+        Spark spark = Spark.getInstance();
 
         try {
             serverSocket = new ServerSocket(35000);
@@ -64,9 +68,10 @@ public class httpServer {
             }
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String inputLine, outputLine, path = "/simple";
+            String request = "/simple";
+            String petition = "GET";
             Boolean FirstLine = true;
-            String title = "";
+            String title = "", inputLine, outputLine = "";
             outputStream = clientSocket.getOutputStream();
 
             while ((inputLine = in.readLine()) != null) {
@@ -78,8 +83,9 @@ public class httpServer {
                     title = res[1].split("HTTP")[0].replace(" ", "");
                 }
 
-                if(FirstLine){
-                    path = inputLine.split(" ")[1];
+                if (FirstLine) {
+                    request = inputLine.split(" ")[1];
+                    petition = inputLine.split(" ")[0];
                     FirstLine = false;
                 }
                 if (!in.ready()) {
@@ -87,10 +93,42 @@ public class httpServer {
                 }
             }
 
-            if (path.startsWith("/apps/")){
-                outputLine = executeService(path.substring(5));
-            }
-            else if (!title.equals("")) {
+
+            if (request.startsWith("/apps/")) {
+                String path = request.substring(5);
+                if (petition.equals("GET")) {
+                    String res = spark.getService(path);
+                    if (res == null) {
+                        spark.get(request.substring(5), ((requests, response) -> {
+                            try {
+                                String type = path.split("\\.")[1];
+                                response.setType("text/" + type);
+                                response.setCode("200 OK");
+                                response.setPath(path);
+                                return response.getResponse();
+                            } catch (Exception e) {
+                                response.setType("text/hmtl");
+                                response.setCode("404 NOT FOUND");
+                                response.setPath("404.html");
+                                return response.getResponse();
+                            }
+                        }));
+                        res = spark.getService(path);
+                        outputLine = res;
+                    }
+                    //outputLine = get(outputLine).getResponse();
+                }
+            } else if (petition.equals("POST")) {
+                outputLine = spark.post(path, ((requests, response) -> {
+                    String paths = path.split("\\?")[0];
+                    String type = path.split("\\.")[1];
+                    response.setType("text/" + type);
+                    response.setCode("200 OK");
+                    response.setPath(resquest);
+                    return response.getResponse();
+                }));
+
+        } else if (!title.equals("")) {
                cache instan =cache.getInstance();
                 if(instan.contains(title)){
                     System.out.println("Esta en el cache");
@@ -211,9 +249,13 @@ public class httpServer {
                 "</html>";
     }
 
-
+    /**
+     * Método que ejecuta el servicio
+     * @param serviceName
+     * @return encabezado + cuerpo
+     */
     private static String executeService(String serviceName) {
-       tring header = "", body = "";
+       String header = "", body = "";
         try {
             RESTService rs = services.get(serviceName);
             header = rs.getHeader();
@@ -225,7 +267,11 @@ public class httpServer {
     }
 
 
-
+    /**
+     * Método que añade un servicio
+     * @param key
+     * @param service
+     */
     public void addServices(String key, RESTService service){
         services.put(key,service);
     }
