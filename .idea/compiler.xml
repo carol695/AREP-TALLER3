@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Taller1_AREP" />
+        <module name="AREP-TALLER3" />
         <module name="Taller1-AREP" />
+        <module name="Taller1_AREP" />
         <module name="Taller2_AREP" />
       </profile>
     </annotationProcessing>

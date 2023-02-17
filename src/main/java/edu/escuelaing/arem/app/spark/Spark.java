@@ -22,11 +22,11 @@ public class Spark {
         return instance;
     }
 
-    public static void get(String path){
+    public static void get(String path, ServiceSpark spark){
         Request request = new Request();
         Response response = new Response();
 
-        String res = ServiceSpark.app(request,response);
+        String res = spark.app(request,response);
         services.put(path, res);
     }
 
@@ -40,10 +40,10 @@ public class Spark {
         return new String(file);
     }
 
-    public String post(String path, ServiceSpark service){
+    public static String post(String path, ServiceSpark service){
         Response response = new Response();
         Request request = new Request();
-        services.put(path, ServiceSpark.app(request,response));
-        return ServiceSpark.app(request,response);
+        services.put(path, service.app(request,response));
+        return service.app(request,response);
     }
 }

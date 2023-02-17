@@ -99,16 +99,14 @@ public class httpServer {
                 if (petition.equals("GET")) {
                     String res = spark.getService(path);
                     if (res == null) {
-                        spark.get(request.substring(5), ((requests, response) -> {
+                        Spark.get(request.substring(5), ((requests, response) -> {
                             try {
                                 String type = path.split("\\.")[1];
                                 response.setType("text/" + type);
-                                response.setCode("200 OK");
                                 response.setPath(path);
                                 return response.getResponse();
                             } catch (Exception e) {
                                 response.setType("text/hmtl");
-                                response.setCode("404 NOT FOUND");
                                 response.setPath("404.html");
                                 return response.getResponse();
                             }
@@ -119,12 +117,12 @@ public class httpServer {
                     //outputLine = get(outputLine).getResponse();
                 }
             } else if (petition.equals("POST")) {
-                outputLine = spark.post(path, ((requests, response) -> {
+                String path = request.substring(5);
+                outputLine = Spark.post(path, ((requests, response) -> {
                     String paths = path.split("\\?")[0];
                     String type = path.split("\\.")[1];
                     response.setType("text/" + type);
-                    response.setCode("200 OK");
-                    response.setPath(resquest);
+                    response.setPath(path);
                     return response.getResponse();
                 }));
 
