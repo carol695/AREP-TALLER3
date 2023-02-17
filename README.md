@@ -22,7 +22,7 @@ git clone https://github.com/carol695/AREP-TALLER3.git
 * eclipse.
 * visual Studio code. 
 
-**3. Luego de abrir el laboratorio, corremos el proyecto. Para este caso colocaremos lo siguiente: **
+**3. Luego de abrir el laboratorio, corremos el proyecto. Para este caso colocaremos lo siguiente:**
 
 ```
 git clean package exec:java -D"exec.mainClass"="edu.escuelaing.arem.app.WebApss.FirstApp"
@@ -61,4 +61,4 @@ Para definir el versionamiento se pudo obserar los tags del repositorio, y el ve
 
 ## :page_with_curl: Descripción
 
-Se contruyo una interfaz funcional la cual permite la creacion de las funciones lambda al momento de correr el servidor, estas permiten hacer el GET y el POST sin necesidad de servicios extra, de esta manera tambien lee el tipo del archivo para mostrarlo con el content-type respectivo.
+Se crea una clase(interfaz), esta es funcional la cual permite la creacion de las funciones lambda al momento de correr el servidor, estas permiten hacer el GET y el POST sin necesidad de servicios extra, de esta manera tambien lee el tipo del archivo para mostrarlo con el content-type respectivo.
